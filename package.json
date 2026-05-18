@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/islamSorifulhero/Express.js-Learning#readme",
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "typescript": "^6.0.3"
   }
 }
