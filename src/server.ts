@@ -17,6 +17,7 @@ const pool = new Pool({
   connectionString: config.connection_string,
 });
 
+
 const initDB = async () => {
   try {
     await pool.query(`
@@ -46,6 +47,7 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
+
 app.post("/api/users", async (req: Request, res: Response) => {
   const { name, email, password, age } = req.body;
 
@@ -71,6 +73,7 @@ app.post("/api/users", async (req: Request, res: Response) => {
   }
 });
 
+
 app.get("/api/users", async (req: Request, res: Response) => {
   try {
     const result = await pool.query(`
@@ -90,6 +93,7 @@ app.get("/api/users", async (req: Request, res: Response) => {
   }
 });
 
+
 app.get("/api/users/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -108,6 +112,7 @@ app.get("/api/users/:id", async (req: Request, res: Response) => {
       });
     }
 
+
     res.status(200).json({
       success: true,
       message: "User retrived successfully!",
@@ -121,6 +126,7 @@ app.get("/api/users/:id", async (req: Request, res: Response) => {
     });
   }
 });
+
 
 app.put("/api/users/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
