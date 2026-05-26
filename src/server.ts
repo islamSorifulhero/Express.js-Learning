@@ -17,7 +17,6 @@ const pool = new Pool({
   connectionString: config.connection_string,
 });
 
-
 const initDB = async () => {
   try {
     await pool.query(`
@@ -41,14 +40,15 @@ const initDB = async () => {
 initDB();
 
 app.get("/", (req: Request, res: Response) => {
+  //res.send("Hello World!");
   res.status(200).json({
     message: "Express Server",
     author: "Next Level",
   });
 });
 
-
 app.post("/api/users", async (req: Request, res: Response) => {
+  //   console.log(req.body);
   const { name, email, password, age } = req.body;
 
   try {
@@ -58,6 +58,7 @@ app.post("/api/users", async (req: Request, res: Response) => {
     `,
       [name, email, password, age],
     );
+    // console.log(result);
 
     res.status(201).json({
       success: true,
@@ -72,7 +73,6 @@ app.post("/api/users", async (req: Request, res: Response) => {
     });
   }
 });
-
 
 app.get("/api/users", async (req: Request, res: Response) => {
   try {
@@ -93,7 +93,6 @@ app.get("/api/users", async (req: Request, res: Response) => {
   }
 });
 
-
 app.get("/api/users/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -112,7 +111,6 @@ app.get("/api/users/:id", async (req: Request, res: Response) => {
       });
     }
 
-
     res.status(200).json({
       success: true,
       message: "User retrived successfully!",
@@ -127,10 +125,12 @@ app.get("/api/users/:id", async (req: Request, res: Response) => {
   }
 });
 
-
 app.put("/api/users/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   const { name, password, age, is_active } = req.body;
+
+  // console.log("Id : ", id);
+  // console.log({ name, password, age, is_active });
 
   try {
     const result = await pool.query(
