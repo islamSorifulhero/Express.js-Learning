@@ -47,6 +47,14 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
+// app.get("/", (req: Request, res: Response) => {
+//   res.send("Hello World!");
+//   res.status(200).json({
+//     message: "Express Server",
+//     author: "Next Level",
+//   });
+// });
+
 app.post("/api/users", async (req: Request, res: Response) => {
   //   console.log(req.body);
   const { name, email, password, age } = req.body;
