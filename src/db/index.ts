@@ -2,12 +2,12 @@ import { Pool } from "pg";
 import config from "../config";
 
 export const pool = new Pool({
-  connectionString: config.connection_string,
+    connectionString: config.connection_string,
 });
 
 export const initDB = async () => {
-  try {
-    await pool.query(`
+    try {
+        await pool.query(`
         CREATE TABLE IF NOT EXISTS users(
         id SERIAL PRIMARY KEY,
         name VARCHAR(20),
@@ -22,7 +22,7 @@ export const initDB = async () => {
         )
         `);
 
-    await pool.query(`
+        await pool.query(`
       CREATE TABLE IF NOT EXISTS profiles(
       id SERIAL PRIMARY KEY,
       user_id INT UNIQUE REFERENCES users(id) ON DELETE CASCADE,
@@ -37,8 +37,8 @@ export const initDB = async () => {
       )  
         `);
 
-    console.log("Database connected successfully!");
-  } catch (error) {
-    console.log(error);
-  }
+        console.log("Database connected successfully!");
+    } catch (error) {
+        console.log(error);
+    }
 };
