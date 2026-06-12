@@ -24,6 +24,12 @@ app.use(
     }),
 );
 
+// app.use(
+//     cors({
+//         origin: "http://localhost:3000",
+//     }),
+// );
+
 app.get("/", (req: Request, res: Response) => {
     //res.send("Hello World!");
     res.status(200).json({
@@ -31,6 +37,14 @@ app.get("/", (req: Request, res: Response) => {
         author: "Next Level",
     });
 });
+
+// app.get("/", (req: Request, res: Response) => {
+//     //res.send("Hello World!");
+//     res.status(200).json({
+//         message: "Express Server",
+//         author: "Next Level",
+//     })
+// })
 
 app.use("/api/users", userRoute);
 app.use("/api/profile", profileRoute);
